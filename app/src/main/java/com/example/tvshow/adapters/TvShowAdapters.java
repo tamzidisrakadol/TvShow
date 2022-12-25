@@ -16,9 +16,11 @@ import java.util.List;
 
 public class TvShowAdapters extends RecyclerView.Adapter<TvShowAdapters.TvShowViewHolder>{
     List<TvShow> tvShowList;
+    ItemClickListener itemClickListener;
 
-    public TvShowAdapters(List<TvShow> tvShowList) {
+    public TvShowAdapters(List<TvShow> tvShowList,ItemClickListener itemClickListener) {
         this.tvShowList = tvShowList;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -39,7 +41,7 @@ public class TvShowAdapters extends RecyclerView.Adapter<TvShowAdapters.TvShowVi
         return tvShowList.size();
     }
 
-    public static class TvShowViewHolder extends RecyclerView.ViewHolder{
+    public  class TvShowViewHolder extends RecyclerView.ViewHolder{
         ListItemBinding listItemBinding;
 
         public TvShowViewHolder(ListItemBinding listItemBinding) {
@@ -50,6 +52,12 @@ public class TvShowAdapters extends RecyclerView.Adapter<TvShowAdapters.TvShowVi
         public void BindTvShow(TvShow tvShow){
             listItemBinding.setTvShow(tvShow);
             listItemBinding.executePendingBindings();
+            listItemBinding.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    itemClickListener.onItemClick(tvShow);
+                }
+            });
         }
     }
 }
