@@ -7,6 +7,10 @@
         <variable
             name="isLoading"
             type="Boolean"/>
+
+        <variable
+            name="isLoadingMore"
+            type="Boolean"/>
         <import type="android.view.View"/>
     </data>
 
@@ -84,7 +88,10 @@
             android:layout_height="0dp"
             android:layout_marginTop="64dp"
             android:clipToPadding="false"
-            android:padding="@dimen/_4sdp"
+            android:paddingStart="@dimen/_4sdp"
+            android:paddingTop="@dimen/_4sdp"
+            android:paddingEnd="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_45sdp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -97,9 +104,20 @@
             android:layout_height="@dimen/_27sdp"
             android:visibility="@{isLoading ? View.VISIBLE : View.GONE,default = gone}"
             app:layout_constraintEnd_toEndOf="parent"
+            android:indeterminateTint="#990000"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/recyclerView" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:indeterminateTint="#990000"
+            android:visibility="@{isLoadingMore ? View.VISIBLE : View.GONE,default = gone}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,8 +14,6 @@ import retrofit2.Response;
 
 public class MostPopularTvShowRepository {
 
-
-
     private ApiService apiService;
 
     public MostPopularTvShowRepository() {

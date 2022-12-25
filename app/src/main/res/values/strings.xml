@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">TvShow</string>
     <string name="tv_series">TV SERIES</string>
-    <string name="most_popular">Most Popular</string>
+    <string name="most_popular">Most Popular Shows</string>
 </resources>
