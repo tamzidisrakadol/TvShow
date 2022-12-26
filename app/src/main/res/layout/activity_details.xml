@@ -31,6 +31,38 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/detailsViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_160sdp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <View
+            android:id="@+id/viewFadingBg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:background="@drawable/details_bg_gradiient"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/detailsViewPager"/>
+
+
+        <LinearLayout
+            android:id="@+id/slideIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/_8sdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/viewFadingBg"/>
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

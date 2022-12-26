@@ -75,7 +75,7 @@
             android:fontFamily="@font/ralewaymedium"
             android:includeFontPadding="false"
             android:paddingTop="@dimen/_8sdp"
-            android:textColor="#990000"
+            android:textColor="#F63434"
             android:text='@{tvShow.network + " ("+tvShow.country+")"}'
             android:textSize="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +112,7 @@
             android:includeFontPadding="false"
             android:paddingTop="@dimen/_8sdp"
             android:text="@{tvShow.status}"
-            android:textColor="#990000"
+            android:textColor="#3CF808"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
