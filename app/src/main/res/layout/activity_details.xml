@@ -7,6 +7,41 @@
         <variable
             name="isLoading"
             type="Boolean" />
+        
+        <variable
+            name="tvShowImageUrl"
+            type="String"/>
+
+        <variable
+            name="tvShowName"
+            type="String"/>
+        <variable
+            name="networkCountry"
+            type="String"/>
+        <variable
+            name="status"
+            type="String"/>
+        <variable
+            name="startDate"
+            type="String"/>
+
+        <variable
+            name="description"
+            type="String"/>
+        
+        <variable
+            name="rating"
+            type="String"/>
+        
+        <variable
+            name="genre"
+            type="String" />
+        
+        <variable
+            name="runtime"
+            type="String"/>
+
+
 
         <import type="android.view.View"/>
     </data>
@@ -31,6 +66,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/detailsViewPager"
             android:layout_width="match_parent"
@@ -53,16 +99,283 @@
 
         <LinearLayout
             android:id="@+id/slideIndicator"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="end|center_horizontal"
             android:orientation="horizontal"
             android:padding="@dimen/_8sdp"
             android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/detailsRoundedImgView"
             app:layout_constraintBottom_toBottomOf="@id/viewFadingBg"/>
 
 
+        <ImageButton
+            android:id="@+id/detailsBackBtn"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/back_btn_bg"
+            android:src="@drawable/back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/detailsRoundedImgView"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:imgUrl="@{tvShowImageUrl}"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:riv_corner_radius="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/detailsViewPager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailsViewPager"/>
+
+        <TextView
+            android:id="@+id/detailsSeriesName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/raleway_bold"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="@{tvShowName}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/detailsRoundedImgView"
+            app:layout_constraintTop_toBottomOf="@id/detailsViewPager"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/detailsNetworkCountry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/raleway_regular"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="@{networkCountry}"
+            android:textColor="#F63434"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@id/detailsSeriesName"
+            app:layout_constraintStart_toStartOf="@id/detailsSeriesName"
+            app:layout_constraintTop_toBottomOf="@id/detailsSeriesName"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/detailsSeriesStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/raleway_regular"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="@{status}"
+            android:textColor="#3CF808"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@id/detailsSeriesName"
+            app:layout_constraintStart_toStartOf="@id/detailsSeriesName"
+            app:layout_constraintTop_toBottomOf="@id/detailsNetworkCountry"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/detailsSeriesStarted"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/raleway_regular"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text='@{"Started on "+startDate}'
+            android:textColor="#B6B6B4"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@id/detailsSeriesName"
+            app:layout_constraintStart_toStartOf="@id/detailsSeriesName"
+            app:layout_constraintTop_toBottomOf="@id/detailsSeriesStatus"
+            android:visibility="gone" />
 
 
+        <TextView
+            android:id="@+id/detailsDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/raleway_regular"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="@dimen/_2sdp"
+            android:maxLines="4"
+            android:text='@{description}'
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/detailsRoundedImgView"/>
+
+        <TextView
+            android:id="@+id/detailsTvReadMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="@font/ralewaymedium"
+            android:includeFontPadding="false"
+            android:text="@string/read_more"
+            android:textColor="#B6B6B4"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/detailsDescription"
+            app:layout_constraintTop_toBottomOf="@id/detailsDescription"/>
+                
+                
+            <View
+                android:id="@+id/detailDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:background="@color/white"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/detailsTvReadMore"/>
+
+                <LinearLayout
+                    android:id="@+id/detailMisc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/detailDivider">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:src="@drawable/start_rate"/>
+
+
+                    <TextView
+                        android:id="@+id/detailRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/raleway_regular"
+                        android:includeFontPadding="false"
+                        android:text="@{rating}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:includeFontPadding="false"
+                        android:fontFamily="@font/raleway_bold"
+                        android:text="@string/u2022"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"/>
+
+                    <TextView
+                        android:id="@+id/detailGenre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:fontFamily="@font/raleway_regular"
+                        android:includeFontPadding="false"
+                        android:text="@{genre}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:includeFontPadding="false"
+                        android:fontFamily="@font/raleway_bold"
+                        android:text="@string/u2022"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"/>
+
+
+                    <TextView
+                        android:id="@+id/detailRuntime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:fontFamily="@font/raleway_regular"
+                        android:includeFontPadding="false"
+                        android:text="@{runtime}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/detailDivider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@color/white"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/detailMisc"/>
+
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/detailWebsiteBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:fontFamily="@font/ralewaymedium"
+                    android:includeFontPadding="false"
+                    android:text="@string/website"
+                    android:textSize="@dimen/_12sdp"
+                    android:visibility="gone"
+                    android:backgroundTint="#F11B1B"
+                    app:cornerRadius="@dimen/_8sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/detailEpisodeBtn"
+                    app:layout_constraintTop_toBottomOf="@id/detailDivider2"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/detailEpisodeBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:fontFamily="@font/ralewaymedium"
+                    android:includeFontPadding="false"
+                    android:text="@string/episode"
+                    android:textSize="@dimen/_12sdp"
+                    android:visibility="gone"
+                    android:backgroundTint="#B6B6B4"
+                    app:cornerRadius="@dimen/_8sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/detailWebsiteBtn"
+                    app:layout_constraintTop_toBottomOf="@id/detailDivider2"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+        
+        
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -93,7 +93,7 @@
             android:fontFamily="@font/ralewaymedium"
             android:includeFontPadding="false"
             android:paddingTop="@dimen/_8sdp"
-            android:textColor="@color/white"
+            android:textColor="#B6B6B4"
             android:text='@{"Started on: "+tvShow.startData}'
             android:textSize="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="parent"
