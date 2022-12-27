@@ -3,6 +3,7 @@ package com.example.tvshow.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
@@ -11,22 +12,30 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.tvshow.R;
+import com.example.tvshow.adapters.EpisodeAdapter;
 import com.example.tvshow.adapters.ImageSlideAdapter;
 import com.example.tvshow.databinding.ActivityDetailsBinding;
+import com.example.tvshow.databinding.BottomsheetLayoutBinding;
 import com.example.tvshow.response.TvShowDetailResponse;
 import com.example.tvshow.viewModel.TvShowDetailsViewModel;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.Locale;
 
 public class Details extends AppCompatActivity {
     ActivityDetailsBinding activityDetailsBinding;
     TvShowDetailsViewModel tvShowDetailsViewModel;
+    BottomSheetDialog episodeBtmSheet;
+    BottomsheetLayoutBinding bottomsheetLayoutBinding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,18 +72,15 @@ public class Details extends AppCompatActivity {
                 )));
                 activityDetailsBinding.detailsDescription.setVisibility(View.VISIBLE);
                 activityDetailsBinding.detailsTvReadMore.setVisibility(View.VISIBLE);
-                activityDetailsBinding.detailsTvReadMore.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (activityDetailsBinding.detailsTvReadMore.getText().toString().equals("Read More")){
-                            activityDetailsBinding.detailsDescription.setMaxLines(Integer.MAX_VALUE);
-                            activityDetailsBinding.detailsDescription.setEllipsize(null);
-                            activityDetailsBinding.detailsTvReadMore.setText("Read Less");
-                        }else{
-                            activityDetailsBinding.detailsDescription.setMaxLines(4);
-                            activityDetailsBinding.detailsDescription.setEllipsize(TextUtils.TruncateAt.END);
-                            activityDetailsBinding.detailsTvReadMore.setText("Read More");
-                        }
+                activityDetailsBinding.detailsTvReadMore.setOnClickListener(view -> {
+                    if (activityDetailsBinding.detailsTvReadMore.getText().toString().equals("Read More")){
+                        activityDetailsBinding.detailsDescription.setMaxLines(Integer.MAX_VALUE);
+                        activityDetailsBinding.detailsDescription.setEllipsize(null);
+                        activityDetailsBinding.detailsTvReadMore.setText("Read Less");
+                    }else{
+                        activityDetailsBinding.detailsDescription.setMaxLines(4);
+                        activityDetailsBinding.detailsDescription.setEllipsize(TextUtils.TruncateAt.END);
+                        activityDetailsBinding.detailsTvReadMore.setText("Read More");
                     }
                 });
 
@@ -96,6 +102,25 @@ public class Details extends AppCompatActivity {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(tvShowDetailResponse.getTvShowDetails().getUrl()));
                     startActivity(intent);
+                });
+
+                activityDetailsBinding.detailEpisodeBtn.setOnClickListener(view -> {
+                    if (episodeBtmSheet ==null){
+                        episodeBtmSheet = new BottomSheetDialog(Details.this);
+                        bottomsheetLayoutBinding=DataBindingUtil.inflate(LayoutInflater.from(Details.this),
+                                R.layout.bottomsheet_layout,
+                                findViewById(R.id.btmSheetEpisodeContainer),
+                                false);
+                        episodeBtmSheet.setContentView(bottomsheetLayoutBinding.getRoot());
+                        bottomsheetLayoutBinding.btmSheetRecyclerview.setAdapter(new EpisodeAdapter(tvShowDetailResponse.getTvShowDetails().getEpisodesList()));
+                        bottomsheetLayoutBinding.bottomSheetTitle.setText(String.format("Episodes | %s",getIntent().getStringExtra("name")));
+                        bottomsheetLayoutBinding.bottomSheetImgClose.setOnClickListener(view1 -> {
+                            episodeBtmSheet.dismiss();
+                        });
+                    }
+                    episodeBtmSheet.show();
+
+
                 });
 
                 loadBasicDetails();

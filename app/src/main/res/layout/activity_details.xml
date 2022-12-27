@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        android:background="@drawable/bg_gradient"
+        android:background="@drawable/bgthree"
         tools:context=".activities.Details">
 
 
@@ -112,12 +112,13 @@
 
         <ImageButton
             android:id="@+id/detailsBackBtn"
-            android:layout_width="@dimen/_22sdp"
-            android:layout_height="@dimen/_22sdp"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/back_btn_bg"
-            android:src="@drawable/back_arrow"
+            android:foregroundGravity="center"
+            android:background="@android:color/transparent"
+            android:src="@drawable/backward"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -343,9 +344,10 @@
                     android:fontFamily="@font/ralewaymedium"
                     android:includeFontPadding="false"
                     android:text="@string/website"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:visibility="gone"
-                    android:backgroundTint="#F11B1B"
+                    android:backgroundTint="#76F600"
                     app:cornerRadius="@dimen/_8sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

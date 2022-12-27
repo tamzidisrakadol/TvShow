@@ -18,13 +18,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.MainActivity"
-        android:background="@drawable/bg_gradient">
+        android:background="@drawable/bgthree">
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="#0C090A"
+            android:background="@android:color/transparent"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:padding="@dimen/_8sdp"
@@ -78,7 +78,7 @@
             android:background="@android:color/transparent"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:src="@drawable/saves"
+            android:src="@drawable/bookmark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
