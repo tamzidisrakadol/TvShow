@@ -98,12 +98,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
     @Override
     public void onItemClick(TvShow tvShow) {
         Intent intent = new Intent(MainActivity.this,Details.class);
-        intent.putExtra("id",tvShow.getId());
-        intent.putExtra("name",tvShow.getName());
-        intent.putExtra("startDate",tvShow.getStartData());
-        intent.putExtra("country",tvShow.getCountry());
-        intent.putExtra("network",tvShow.getNetwork());
-        intent.putExtra("status",tvShow.getStatus());
+        intent.putExtra("tvShow",tvShow);
         startActivity(intent);
     }
 }

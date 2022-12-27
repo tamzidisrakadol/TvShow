@@ -1,9 +1,15 @@
 package com.example.tvshow.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
-public class TvShow{
+import java.io.Serializable;
+@Entity(tableName = "tvShows")
+public class TvShow implements Serializable {
 
+    @PrimaryKey
     @SerializedName("id")
     private int id;
 
