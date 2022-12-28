@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
                 }
             }
         });
+        activityMainBinding.bookmark.setOnClickListener(view1 -> startActivity(new Intent(MainActivity.this,Watchlist.class)));
 
         //to fetch all show
         getTvShow();
