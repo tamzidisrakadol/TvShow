@@ -47,7 +47,7 @@
                 android:includeFontPadding="false"
                 android:maxLines="1"
                 android:text="Watchlist"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"/>
             
         </LinearLayout>
