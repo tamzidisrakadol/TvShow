@@ -7,7 +7,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Toast;
 
@@ -39,6 +43,14 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         View view = activityMainBinding.getRoot();
         setContentView(view);
 
+        String text = "SeriesZone";
+        SpannableString spannableString = new SpannableString(text);
+        int green = Color.GREEN;
+        ForegroundColorSpan redSpan = new ForegroundColorSpan(green);
+        spannableString.setSpan(redSpan, 0, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        activityMainBinding.headerText.setText(spannableString);
+
+
         activityMainBinding.recyclerView.setHasFixedSize(true);
 
         //init viewModel
@@ -62,6 +74,11 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
             }
         });
         activityMainBinding.bookmark.setOnClickListener(view1 -> startActivity(new Intent(MainActivity.this,Watchlist.class)));
+        activityMainBinding.movieSearchBtn.setOnClickListener(view12 -> {
+            startActivity(new Intent(MainActivity.this,SearchTvActivity.class));
+        });
+
+
 
         //to fetch all show
         getTvShow();

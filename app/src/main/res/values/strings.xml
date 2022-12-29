@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">TvShow</string>
+    <string name="app_name">WatchThis</string>
     <string name="tv_series">TV SERIES</string>
     <string name="most_popular">Most Popular Shows</string>
     <string name="read_more">Read More</string>
     <string name="u2022">•</string>
     <string name="website">website</string>
     <string name="episode">Episode</string>
+    <string name="search_tv_show">Search Tv Show</string>
+    <string name="todo">TODO</string>
 </resources>
